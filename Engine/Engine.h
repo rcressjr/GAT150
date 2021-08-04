@@ -19,7 +19,8 @@
 #include "Math/Transform.h"
 
 // Graphics
-
+#include "Graphics/Renderer.h"
+#include "Graphics/Texture.h"
 
 // Resource
 #include "Resource/ResourceSystem.h"
