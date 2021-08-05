@@ -3,17 +3,24 @@
 #include <SDL.h>
 #include <iostream>
 
-int main(int, char**){
+int main(int, char**) {
 	rj::Engine engine;
 	engine.Startup();
 
 	engine.Get<rj::Renderer>()->Create("GAT150", 800, 600);
 
-	std::cout << rj::GetFilePath() << std::endl;
+	rj::Scene scene;
+	scene.engine = &engine;
+
 	rj::SetFilePath("../Resources");
-	std::cout << rj::GetFilePath() << std::endl;
 
 	std::shared_ptr<rj::Texture> texture = engine.Get<rj::ResourceSystem>()->Get<rj::Texture>("sf2.png", engine.Get<rj::Renderer>());
+
+	for (size_t i = 0; i < 50; i++) {
+		rj::Transform transform{ rj::Vector2{ rj::RandomRangeInt(0, 800), rj::RandomRangeInt(0, 600) }, rj::RandomRange(0, 360), 1 };
+		std::unique_ptr<rj::Actor> actor = std::make_unique<rj::Actor>(transform, texture);
+		scene.AddActor(std::move(actor));
+	}
 
 	bool quit = false;
 	SDL_Event event;
@@ -24,20 +31,14 @@ int main(int, char**){
 			break;
 		}
 
+		engine.Update(0);
+		scene.Update(0);
+
 		engine.Get<rj::Renderer>()->BeginFrame();
 
-		rj::Vector2 position{ 300, 400 };
-
-		engine.Get<rj::Renderer>()->Draw(texture, position);
-
+		scene.Draw(engine.Get<rj::Renderer>());
+			
 		engine.Get<rj::Renderer>()->EndFrame();
-
-		//for (size_t i = 0; i < 250; i++) {
-		//	SDL_Rect src{ 32, 64, 32, 64 };
-		// 
-		//	SDL_Rect dest{ rj::RandomRangeInt(0, screen.x), rj::RandomRangeInt(0, screen.y), 16, 24 };
-		//	SDL_RenderCopy(renderer, texture, &src, &dest);
-		//}
 	}
 
 	IMG_Quit();
