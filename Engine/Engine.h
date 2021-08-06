@@ -4,6 +4,7 @@
 
 // Core
 #include "Core/FileSystem.h"
+#include "Core/Timer.h"
 
 // Framework
 #include "Framework/EventSystem.h"
@@ -47,6 +48,9 @@ namespace rj {
 
 		template<typename T>
 		T* Get();
+
+	public:
+		FrameTimer time;
 
 	private:
 		std::vector<std::unique_ptr<System>> systems;

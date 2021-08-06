@@ -8,21 +8,19 @@ namespace rj {
 
 		std::for_each(systems.begin(), systems.end(), [](auto& system) {system->Startup(); });
 
-		for (auto& system : systems) {
-			std::for_each(systems.begin(), systems.end(), [](auto& system) {system->Startup(); });
-		}
+		std::for_each(systems.begin(), systems.end(), [](auto& system) {system->Startup(); });
 	}
 
 	void Engine::Shutdown() {
-		for (auto& system : systems) {
-			std::for_each(systems.begin(), systems.end(), [](auto& system) {system->Shutdown(); });
-		}
+		std::for_each(systems.begin(), systems.end(), [](auto& system) {system->Shutdown(); });
+	
 	}
 
 	void Engine::Update(float dt) {
-		for (auto& system : systems) {
-			std::for_each(systems.begin(), systems.end(), [dt](auto& system) {system->Update(dt); });
-		}
+		time.Tick();
+
+		std::for_each(systems.begin(), systems.end(), [this](auto& system) {system->Update(this->time.deltaTime); });
+		
 	}
 
 	void Engine::Draw() {

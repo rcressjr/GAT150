@@ -28,7 +28,7 @@ namespace rj {
 			SDL_Quit();
 		}
 
-		renderer = SDL_CreateRenderer(window, -1, 0);
+		renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 	}
 
 	void Renderer::BeginFrame() {
