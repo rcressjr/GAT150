@@ -11,6 +11,7 @@
 #include "Framework/System.h"
 
 // Input
+#include "Input/InputSystem.h"
 
 // Math
 #include "Math/Vector2.h"
@@ -22,6 +23,7 @@
 // Graphics
 #include "Graphics/Renderer.h"
 #include "Graphics/Texture.h"
+#include "Graphics/ParticleSystem.h"
 
 // Resource
 #include "Resource/ResourceSystem.h"
@@ -44,7 +46,7 @@ namespace rj {
 		void Shutdown();
 
 		void Update(float dt);
-		void Draw();
+		void Draw(Renderer* renderer);
 
 		template<typename T>
 		T* Get();

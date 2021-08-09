@@ -38,7 +38,15 @@ int main(int, char**) {
 		engine.Update(0);
 		scene.Update(engine.time.deltaTime);
 
-		if (engine.time.time >= quitTime) quit = true;
+		if (engine.Get<rj::InputSystem>()->GetKeyState(SDL_SCANCODE_ESCAPE) == rj::InputSystem::eKeyState::Pressed) {
+			quit = true;
+		}
+
+		if (engine.Get<rj::InputSystem>()->GetButtonState((int)rj::InputSystem::eMouseButton::Left) == rj::InputSystem::eKeyState::Pressed) {
+			rj::Vector2 position = engine.Get<rj::InputSystem>()->GetMousePosition();
+			std::cout << position.x << " " << position.y << std::endl;
+			//engine.Get<rj::ParticleSystem>()->Create();
+		}
 
 		engine.time.timeScale = 2;
 
