@@ -16,6 +16,7 @@ int main(int, char**) {
 	rj::SetFilePath("../Resources");
 
 	std::shared_ptr<rj::Texture> texture = engine.Get<rj::ResourceSystem>()->Get<rj::Texture>("sf2.png", engine.Get<rj::Renderer>());
+	std::shared_ptr<rj::Texture> particle = engine.Get<rj::ResourceSystem>()->Get<rj::Texture>("particle01.png", engine.Get<rj::Renderer>());
 
 	for (size_t i = 0; i < 50; i++) {
 		rj::Transform transform{ rj::Vector2{ rj::RandomRangeInt(0, 800), rj::RandomRangeInt(0, 600) }, rj::RandomRange(0, 360), 1 };
@@ -42,10 +43,9 @@ int main(int, char**) {
 			quit = true;
 		}
 
-		if (engine.Get<rj::InputSystem>()->GetButtonState((int)rj::InputSystem::eMouseButton::Left) == rj::InputSystem::eKeyState::Pressed) {
+		if (engine.Get<rj::InputSystem>()->GetButtonState((int)rj::InputSystem::eMouseButton::Left) == rj::InputSystem::eKeyState::Held) {
 			rj::Vector2 position = engine.Get<rj::InputSystem>()->GetMousePosition();
-			std::cout << position.x << " " << position.y << std::endl;
-			//engine.Get<rj::ParticleSystem>()->Create();
+			engine.Get<rj::ParticleSystem>()->Create(position, 10, particle, 10, 50);
 		}
 
 		engine.time.timeScale = 2;
@@ -53,6 +53,7 @@ int main(int, char**) {
 		engine.Get<rj::Renderer>()->BeginFrame();
 
 		scene.Draw(engine.Get<rj::Renderer>());
+		engine.Draw(engine.Get<rj::Renderer>());
 			
 		engine.Get<rj::Renderer>()->EndFrame();
 	}
