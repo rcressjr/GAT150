@@ -15,6 +15,10 @@ int main(int, char**) {
 
 	rj::SetFilePath("../Resources");
 
+	engine.Get<rj::AudioSystem>()->AddAudio("explosion", "audio/PlayerShoot.wav");
+	engine.Get<rj::AudioSystem>()->AddAudio("music", "audio/bensound-house.mp3");
+	rj::AudioChannel channel = engine.Get<rj::AudioSystem>()->PlayAudio("music");
+
 	std::shared_ptr<rj::Texture> texture = engine.Get<rj::ResourceSystem>()->Get<rj::Texture>("sf2.png", engine.Get<rj::Renderer>());
 	std::shared_ptr<rj::Texture> particle = engine.Get<rj::ResourceSystem>()->Get<rj::Texture>("particle01.png", engine.Get<rj::Renderer>());
 
@@ -43,9 +47,11 @@ int main(int, char**) {
 			quit = true;
 		}
 
-		if (engine.Get<rj::InputSystem>()->GetButtonState((int)rj::InputSystem::eMouseButton::Left) == rj::InputSystem::eKeyState::Held) {
+		if (engine.Get<rj::InputSystem>()->GetButtonState((int)rj::InputSystem::eMouseButton::Left) == rj::InputSystem::eKeyState::Pressed) {
 			rj::Vector2 position = engine.Get<rj::InputSystem>()->GetMousePosition();
 			engine.Get<rj::ParticleSystem>()->Create(position, 10, particle, 10, 50);
+			engine.Get<rj::AudioSystem>()->PlayAudio("explosion", 1, rj::RandomRange(-20.0f, 2.0f));
+			channel.SetPitch(rj::RandomRange(-2.0f, 2.0f));
 		}
 
 		engine.time.timeScale = 2;
