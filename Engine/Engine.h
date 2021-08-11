@@ -5,6 +5,7 @@
 // Core
 #include "Core/FileSystem.h"
 #include "Core/Timer.h"
+#include "Core/Utilities.h"
 
 // Framework
 #include "Framework/EventSystem.h"
@@ -21,6 +22,7 @@
 #include "Math/Transform.h"
 
 // Graphics
+#include "Graphics/Font.h"
 #include "Graphics/Renderer.h"
 #include "Graphics/Texture.h"
 #include "Graphics/ParticleSystem.h"

@@ -11,13 +11,11 @@ namespace rj {
 	const Color Color::black(0, 0, 0);
 	const Color Color::yellow(1, 1, 0);
 
-    std::istream& operator>>(std::istream& stream, Color& color)
-    {
+    std::istream& operator>>(std::istream& stream, Color& color) {
         std::string line;
         std::getline(stream, line);
 
-        if (line.find("{") != std::string::npos)
-        {
+        if (line.find("{") != std::string::npos) {
             std::string r = line.substr(line.find("{") + 1, line.find(",") - line.find("{") - 1);
             color.r = std::stof(r);
 

@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <iostream>
+#include <SDL.h>
 
 namespace rj {
 	struct Color {
@@ -18,6 +19,15 @@ namespace rj {
 		Color operator - (const Color& color) { return { r - color.r, g - color.g, b - color.b }; }
 		Color operator * (float s) const { return { r * s, g * s, b * s }; }
 		operator uint32_t() const { return ToRGB(); }
+		operator SDL_Color() const {
+			SDL_Color color;
+			color.r = static_cast<Uint8>(r * 255);
+			color.g = static_cast<Uint8>(g * 255);
+			color.b = static_cast<Uint8>(b * 255);
+			color.a = static_cast<Uint8>(255);
+
+			return color;
+		}
 
 		uint32_t ToRGB() const {
 			std::uint8_t red = static_cast<std::uint8_t>(r * 255);		// 0 - 1 -> 0 - 255

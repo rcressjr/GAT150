@@ -1,10 +1,10 @@
 #include "Engine.h"
-#include "SDL_image.h"
 #include <SDL.h>
+#include <SDL_image.h>
 #include <iostream>
+#include <cassert>
 
 int main(int, char**) {
-
 	rj::Engine engine;
 	engine.Startup();
 
@@ -19,8 +19,16 @@ int main(int, char**) {
 	engine.Get<rj::AudioSystem>()->AddAudio("music", "audio/bensound-house.mp3");
 	rj::AudioChannel channel = engine.Get<rj::AudioSystem>()->PlayAudio("music");
 
+	int size = 64;
+	std::shared_ptr<rj::Font> font = engine.Get<rj::ResourceSystem>()->Get<rj::Font>("fonts/ace records.ttf", &size);
+
+	std::shared_ptr<rj::Texture> textTexture = std::make_shared<rj::Texture>(engine.Get<rj::Renderer>());
 	std::shared_ptr<rj::Texture> texture = engine.Get<rj::ResourceSystem>()->Get<rj::Texture>("sf2.png", engine.Get<rj::Renderer>());
 	std::shared_ptr<rj::Texture> particle = engine.Get<rj::ResourceSystem>()->Get<rj::Texture>("particle01.png", engine.Get<rj::Renderer>());
+
+	textTexture->Create(font->CreateSurface("hello world", rj::Color::purple));
+
+	engine.Get<rj::ResourceSystem>()->Add("textTexture", textTexture);
 
 	for (size_t i = 0; i < 50; i++) {
 		rj::Transform transform{ rj::Vector2{ rj::RandomRangeInt(0, 800), rj::RandomRangeInt(0, 600) }, rj::RandomRange(0, 360), 1 };
@@ -60,7 +68,11 @@ int main(int, char**) {
 
 		scene.Draw(engine.Get<rj::Renderer>());
 		engine.Draw(engine.Get<rj::Renderer>());
-			
+		
+		rj::Transform t;
+		t.position = { 30, 30 };
+		engine.Get<rj::Renderer>()->Draw(textTexture, t);
+		
 		engine.Get<rj::Renderer>()->EndFrame();
 	}
 

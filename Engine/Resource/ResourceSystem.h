@@ -12,6 +12,7 @@ namespace rj {
 		void Startup() override {}
 		void Shutdown() override{}
 		void Update(float dt) override {}
+		void Add(const std::string& name, std::shared_ptr<rj::Resources> resource);
 
 		template <typename T>
 		std::shared_ptr<T> Get(const std::string& name, void* data = nullptr);
@@ -20,15 +21,19 @@ namespace rj {
 		std::map<std::string, std::shared_ptr<Resources>> resources;
 	};
 
+	inline void ResourceSystem::Add(const std::string& name, std::shared_ptr<rj::Resources> resource) {
+		resources[string_tolower(name)] = resource;
+	}
+
 	template <typename T>
 	inline std::shared_ptr<T> ResourceSystem::Get(const std::string& name, void* data) {
-		if (resources.find(name) != resources.end()) {
-			return std::dynamic_pointer_cast<T>(resources[name]);
+		if (resources.find(string_tolower(name)) != resources.end()) {
+			return std::dynamic_pointer_cast<T>(resources[string_tolower(name)]);
 		}
 		else {
 			std::shared_ptr resource = std::make_shared<T>();
 			resource->Load(name, data);
-			resources[name] = resource;
+			resources[string_tolower(name)] = resource;
 
 			return resource;
 		}
