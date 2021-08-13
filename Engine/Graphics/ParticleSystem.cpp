@@ -54,7 +54,7 @@ namespace rj {
 		}
 	}
 	
-	void ParticleSystem::Create(Vector2 position, size_t count, const std::vector<Color>& colors, float lifetime, float speed, float angle, float angleRange) {
+	void ParticleSystem::Create(Vector2 position, size_t count, std::shared_ptr<Texture> texture, float lifetime, float speed, float angle, float angleRange) {
 		for (size_t i = 0; i < count; i++) {
 			auto particle = std::find_if(particles.begin(), particles.end(), Particle::IsNotActive);
 			if (particle != particles.end()) {
@@ -62,6 +62,7 @@ namespace rj {
 				particle->lifetime = lifetime;
 				particle->position = position;
 				particle->prevPosition = position;
+				particle->texture = texture;
 
 				particle->velocity = rj::Vector2::Rotate(rj::Vector2::right, (angle + rj::RandomRange(-angleRange, angleRange)) * (speed * Random()));
 			}

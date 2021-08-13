@@ -24,6 +24,8 @@ namespace rj {
 	}
 
 	bool Texture::Load(const std::string& name, void* data) {
+		assert(data);
+
 		renderer = static_cast<Renderer*>(data)->renderer;
 		//SDL_Surface* surface = SDL_LoadBMP("sf2.bmp");
 		SDL_Surface* surface = IMG_Load(name.c_str());

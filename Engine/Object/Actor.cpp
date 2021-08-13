@@ -6,9 +6,6 @@
 namespace rj {
 	
 	void Actor::Update(float dt) {
-		transform.rotation += 180.0f * dt;
-		transform.position.x += 100.0f * dt;
-
 		transform.Update();
 		std::for_each(children.begin(), children.end(), [](auto& child) { child->transform.Update(child->parent->transform.matrix); });
 	}
@@ -19,7 +16,7 @@ namespace rj {
 	}
 
 	float Actor::GetRadius() {
-		return (texture) ? texture->GetSize().length() * 0.5f : 0;
+		return (texture) ? texture->GetSize().length() * 0.5f * transform.scale.x : 0;
 	}
 
 	void Actor::AddChild(std::unique_ptr<Actor> actor) {

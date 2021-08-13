@@ -1,4 +1,7 @@
 #include "Game.h"
+#include "Object/Enemy.h"
+#include "Object/Player.h"
+#include "Object/Projectile.h"
 
 void Game::Initialize() {
 	engine = std::make_unique<rj::Engine>();
@@ -18,8 +21,13 @@ void Game::Initialize() {
 	std::shared_ptr<rj::Font> font = engine->Get<rj::ResourceSystem>()->Get<rj::Font>("fonts/ace records.ttf", &size);
 
 	textTexture = std::make_shared<rj::Texture>(engine->Get<rj::Renderer>());
-	texture = engine->Get<rj::ResourceSystem>()->Get<rj::Texture>("sf2.png", engine->Get<rj::Renderer>());
+	playerTexture = engine->Get<rj::ResourceSystem>()->Get<rj::Texture>("player.png", engine->Get<rj::Renderer>());
+	playerBulletTexture = engine->Get<rj::ResourceSystem>()->Get<rj::Texture>("bullet.png", engine->Get<rj::Renderer>());
+	playerRocketTexture = engine->Get<rj::ResourceSystem>()->Get<rj::Texture>("missile.png", engine->Get<rj::Renderer>());
+	enemyTexture = engine->Get<rj::ResourceSystem>()->Get<rj::Texture>("enemy.png", engine->Get<rj::Renderer>());
+	enemyBulletTexture = engine->Get<rj::ResourceSystem>()->Get<rj::Texture>("eboylet.png", engine->Get<rj::Renderer>());
 	particleTexture = engine->Get<rj::ResourceSystem>()->Get<rj::Texture>("particle01.png", engine->Get<rj::Renderer>());
+	particleTextureTwo = engine->Get<rj::ResourceSystem>()->Get<rj::Texture>("particle02.png", engine->Get<rj::Renderer>());
 
 	textTexture->Create(font->CreateSurface("hello world", rj::Color::purple));
 
@@ -27,7 +35,7 @@ void Game::Initialize() {
 
 	for (size_t i = 0; i < 50; i++) {
 		rj::Transform transform{ rj::Vector2{ rj::RandomRangeInt(0, 800), rj::RandomRangeInt(0, 600) }, rj::RandomRange(0, 360), 1 };
-		std::unique_ptr<rj::Actor> actor = std::make_unique<rj::Actor>(transform, texture);
+		std::unique_ptr<rj::Actor> actor = std::make_unique<rj::Actor>(transform, playerTexture);
 		scene->AddActor(std::move(actor));
 	}
 
@@ -49,10 +57,10 @@ void Game::Shutdown() {
 }
 
 void Game::Update() {
-	float dt = engine->time.deltaTime;
+	engine->Update();
+	scene->Update(engine->time.deltaTime);
 
-	switch (state)
-	{
+	switch (state) {
 	case Game::eState::Title:
 		if (engine->Get<rj::InputSystem>()->GetKeyState(SDL_SCANCODE_SPACE) == rj::InputSystem::eKeyState::Pressed) {
 			state = eState::StartGame;
@@ -64,11 +72,11 @@ void Game::Update() {
 		state = eState::StartLevel;
 		break;
 	case Game::eState::StartLevel:
-		UpdateLevelStart(dt);
+		UpdateLevelStart(engine->time.deltaTime);
 		state = eState::Game;
 		break;
 	case Game::eState::Game:
-		/*if (scene->GetActors<Enemy>().size() == 0) {
+		if (scene->GetActors<Enemy>().size() == 0) {
 			level++;
 			if (level >= 10 && level < 20) {
 				creating = 10;
@@ -87,16 +95,13 @@ void Game::Update() {
 			}
 
 			state = eState::StartLevel;
-		}*/
+		}
 		break;
 	case Game::eState::GameOver:
 		break;
 	default:
 		break;
 	}
-
-	engine->Update(dt);
-	scene->Update(dt);;
 
 	if (engine->Get<rj::InputSystem>()->GetKeyState(SDL_SCANCODE_ESCAPE) == rj::InputSystem::eKeyState::Pressed) {
 		quit = true;
@@ -111,8 +116,7 @@ void Game::Update() {
 }
 
 void Game::Draw() {
-	switch (state)
-	{
+	switch (state) {
 	case Game::eState::Title:
 		/*graphics.SetColor(rj::Color::purple);
 		graphics.DrawString(300, 300 + std::sin(stateTimer * 3) * 250, "VECTORY WARS");
@@ -122,9 +126,8 @@ void Game::Draw() {
 		break;
 	case Game::eState::StartGame:
 		break;
-	case Game::eState::StartLevel: {
+	case Game::eState::StartLevel:
 		break;
-	}
 	case Game::eState::Game:
 		/*currentString = "level  " + std::to_string(level);
 		graphics.SetColor(rj::Color::white);
@@ -144,8 +147,8 @@ void Game::Draw() {
 
 	engine->Get<rj::Renderer>()->BeginFrame();
 
-	scene->Draw(engine->Get<rj::Renderer>());
 	engine->Draw(engine->Get<rj::Renderer>());
+	scene->Draw(engine->Get<rj::Renderer>());
 
 	rj::Transform t;
 	t.position = { 30, 30 };
@@ -162,14 +165,14 @@ void Game::UpdateTitle(float dt) {
 }
 
 void Game::UpdateLevelStart(float dt) {
-	/*if (scene->GetActors<Player>().size() == 0) {
-		scene->AddActor(std::make_unique<Player>(rj::Transform{ rj::Vector2(400, 300), 0, 3 }, engine->Get<rj::ResourceSystem>()->Get<rj::Shape>("shape.txt"), 300.0f));
+	if (scene->GetActors<Player>().size() == 0) {
+		scene->AddActor(std::make_unique<Player>(rj::Transform{ rj::Vector2(400, 300), 0, 3 }, playerTexture, 300.0f));
 	}
 	for (size_t i = 0; i < creating; i++) {
-		scene->AddActor(std::make_unique<Enemy>(rj::Transform{ rj::Vector2(rj::RandomEnemy(0.0f, 800.0f), rj::RandomEnemy(0.0f, 600.0f)), rj::RandomEnemy(0.0f, rj::TwoPi), 2 }, engine->Get<rj::ResourceSystem>()->Get<rj::Shape>("enemy.txt"), 150.0f));
+		scene->AddActor(std::make_unique<Enemy>(rj::Transform{ rj::Vector2(rj::RandomRangeInt(0, 800), rj::RandomRangeInt(0, 600)), rj::RandomRange(0.0f, rj::TwoPi), 2 }, enemyTexture, 150.0f));
 	}
 
-	state = eState::Game;*/
+	state = eState::Game;
 }
 
 void Game::OnAddPoints(const rj::Event& event) {

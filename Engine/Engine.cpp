@@ -19,7 +19,7 @@ namespace rj {
 	
 	}
 
-	void Engine::Update(float dt) {
+	void Engine::Update() {
 		time.Tick();
 
 		std::for_each(systems.begin(), systems.end(), [this](auto& system) {system->Update(this->time.deltaTime); });

@@ -1,6 +1,8 @@
 #pragma once
 #include "Engine.h"
 
+
+
 class Game {
 public:
 	enum class eState {
@@ -32,6 +34,15 @@ public:
 	std::unique_ptr<rj::Scene> scene;
 	std::unique_ptr<rj::Engine> engine;
 
+	rj::AudioChannel musicChannel;
+	std::shared_ptr<rj::Texture> playerTexture;
+	std::shared_ptr<rj::Texture> playerBulletTexture;
+	std::shared_ptr<rj::Texture> playerRocketTexture;
+	std::shared_ptr<rj::Texture> enemyTexture;
+	std::shared_ptr<rj::Texture> enemyBulletTexture;
+	std::shared_ptr<rj::Texture> textTexture;
+	std::shared_ptr<rj::Texture> particleTexture;
+	std::shared_ptr<rj::Texture> particleTextureTwo;
 private:
 	bool quit = false;
 	float stateTimer = 0.0f;
@@ -43,9 +54,4 @@ private:
 	size_t level = 1;
 	size_t creating = 1;
 	std::string currentString;
-
-	rj::AudioChannel musicChannel;
-	std::shared_ptr<rj::Texture> texture;
-	std::shared_ptr<rj::Texture> textTexture;
-	std::shared_ptr<rj::Texture> particleTexture;
 };

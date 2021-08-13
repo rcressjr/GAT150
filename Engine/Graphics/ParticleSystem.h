@@ -29,7 +29,7 @@ namespace rj {
 		void Draw(class Renderer* renderer) override;
 
 		void Create(Vector2 position, size_t count, std::shared_ptr<Texture> texture, float lifetime, float speed);
-		void Create(Vector2 position, size_t count, const std::vector<Color>& colors, float lifetime, float speed, float angle, float angleRange);
+		void Create(Vector2 position, size_t count, std::shared_ptr<Texture> texture, float lifetime, float speed, float angle, float angleRange);
 
 	private:
 		std::vector<Particle> particles;
