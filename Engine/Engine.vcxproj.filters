@@ -33,6 +33,9 @@
     <Filter Include="Source\Resource">
       <UniqueIdentifier>{28486150-73e2-4dca-9003-de852307e214}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Math\Component">
+      <UniqueIdentifier>{9fd7c0c4-99ba-4cd9-a6ec-7090f0e2bf29}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp">
@@ -88,6 +91,12 @@
     </ClCompile>
     <ClCompile Include="Core\Utilities.cpp">
       <Filter>Source\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\Component\SpriteComponent.cpp">
+      <Filter>Source\Math\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\Component\PhysicsComponent.cpp">
+      <Filter>Source\Math\Component</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -165,6 +174,18 @@
     </ClInclude>
     <ClInclude Include="Core\Utilities.h">
       <Filter>Source\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Component\Component.h">
+      <Filter>Source\Math\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Component\GraphicsComponent.h">
+      <Filter>Source\Math\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Component\SpriteComponent.h">
+      <Filter>Source\Math\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Component\PhysicsComponent.h">
+      <Filter>Source\Math\Component</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

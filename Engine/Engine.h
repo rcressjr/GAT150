@@ -30,6 +30,10 @@
 #include "Math/Transform.h"
 #include "Math/Vector2.h"
 
+// Components
+#include "Math/Component/SpriteComponent.h"
+#include "Math/Component/PhysicsComponent.h"
+
 // Object
 #include "Object/Actor.h"
 #include "Object/Object.h"
