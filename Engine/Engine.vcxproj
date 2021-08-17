@@ -188,9 +188,6 @@
     <ClCompile Include="Math\Transform.cpp" />
     <ClCompile Include="Math\Vector2.cpp" />
     <ClCompile Include="Object\Actor.cpp" />
-    <ClCompile Include="Object\Enemy.cpp" />
-    <ClCompile Include="Object\Player.cpp" />
-    <ClCompile Include="Object\Projectile.cpp" />
     <ClCompile Include="Object\Scene.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -215,10 +212,7 @@
     <ClInclude Include="Math\Transform.h" />
     <ClInclude Include="Math\Vector2.h" />
     <ClInclude Include="Object\Actor.h" />
-    <ClInclude Include="Object\Enemy.h" />
     <ClInclude Include="Object\Object.h" />
-    <ClInclude Include="Object\Player.h" />
-    <ClInclude Include="Object\Projectile.h" />
     <ClInclude Include="Object\Scene.h" />
     <ClInclude Include="Resource\Resource.h" />
     <ClInclude Include="Resource\ResourceSystem.h" />

@@ -66,7 +66,7 @@ void Player::Update(float dt) {
 			projectile->tag = "Player";
 			scene->AddActor(std::move(projectile));
 		}
-		//scene->engine->Get<rj::AudioSystem>()->PlayAudio("PlayerShoot");
+		scene->engine->Get<rj::AudioSystem>()->PlayAudio("PlayerShoot");
 	}
 	
 	rocketTimer -= dt;

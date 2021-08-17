@@ -24,7 +24,7 @@ void Enemy::Update(float dt) {
 			rj::Transform t = transform;
 			t.scale = 0.5f;
 			scene->AddActor(std::make_unique<Projectile>(t, scene->engine->Get<Game>()->enemyBulletTexture, 300.0f));
-			//scene->engine->Get<rj::AudioSystem>()->PlayAudio("EnemyFire");
+			scene->engine->Get<rj::AudioSystem>()->PlayAudio("EnemyFire");
 		}
 	}
 

@@ -32,10 +32,7 @@
 
 // Object
 #include "Object/Actor.h"
-//#include "Object/Enemy.h"
 #include "Object/Object.h"
-//#include "Object/Player.h"
-//#include "Object/Projectile.h"
 #include "Object/Scene.h"
 
 // Resource

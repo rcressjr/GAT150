@@ -35,12 +35,15 @@ public:
 	std::unique_ptr<rj::Engine> engine;
 
 	rj::AudioChannel musicChannel;
+	std::shared_ptr<rj::Font> font;
+	std::shared_ptr<rj::Font> titleFont;
 	std::shared_ptr<rj::Texture> playerTexture;
 	std::shared_ptr<rj::Texture> playerBulletTexture;
 	std::shared_ptr<rj::Texture> playerRocketTexture;
 	std::shared_ptr<rj::Texture> enemyTexture;
 	std::shared_ptr<rj::Texture> enemyBulletTexture;
 	std::shared_ptr<rj::Texture> textTexture;
+	std::shared_ptr<rj::Texture> titleTexture;
 	std::shared_ptr<rj::Texture> particleTexture;
 	std::shared_ptr<rj::Texture> particleTextureTwo;
 private:
@@ -49,6 +52,9 @@ private:
 	eState state = eState::Title;
 
 	void (Game::*stateFunction)(float) = nullptr;
+	rj::Transform t;
+	rj::Transform titlepos;
+	rj::Transform levelpos;
 
 	size_t score = 0;
 	size_t level = 1;
