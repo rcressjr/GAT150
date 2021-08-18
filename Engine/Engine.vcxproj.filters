@@ -98,6 +98,9 @@
     <ClCompile Include="Math\Component\PhysicsComponent.cpp">
       <Filter>Source\Math\Component</Filter>
     </ClCompile>
+    <ClCompile Include="Math\Component\SpriteAnimationComponent.cpp">
+      <Filter>Source\Math\Component</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Framework\EventSystem.h">
@@ -185,6 +188,9 @@
       <Filter>Source\Math\Component</Filter>
     </ClInclude>
     <ClInclude Include="Math\Component\PhysicsComponent.h">
+      <Filter>Source\Math\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Component\SpriteAnimationComponent.h">
       <Filter>Source\Math\Component</Filter>
     </ClInclude>
   </ItemGroup>

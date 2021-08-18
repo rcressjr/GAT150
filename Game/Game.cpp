@@ -11,17 +11,23 @@ void Game::Initialize() {
 	rj::SeedRandom(static_cast<unsigned int>(time(nullptr)));
 	rj::SetFilePath("../Resources");
 
-	std::unique_ptr<rj::Actor> actor = std::make_unique<rj::Actor>(rj::Transform( rj::Vector2{ 400, 300 } ));
+	//std::unique_ptr<rj::Actor> actor = std::make_unique<rj::Actor>(rj::Transform( rj::Vector2{ 400, 300 }, 0, 1 ));
+	/*{
+		rj::SpriteComponent* component = actor->AddComponent<rj::SpriteComponent>();
+		component->texture = engine->Get<rj::ResourceSystem>()->Get<rj::Texture>("luma.png", engine->Get<rj::Renderer>());
+	}*/
+	std::unique_ptr<rj::Actor> actor = std::make_unique <rj::Actor>(rj::Transform{ rj::Vector2{400, 300}, 0, 7 });
 	{
-		std::unique_ptr<rj::SpriteComponent> component = std::make_unique<rj::SpriteComponent>();
-		component->texture = engine->Get<rj::ResourceSystem>()->Get<rj::Texture>("sf2.png", engine->Get<rj::Renderer>());
-		actor->AddComponent(std::move(component));
+		rj::SpriteAnimationComponent* component = actor->AddComponent<rj::SpriteAnimationComponent>();
+		component->texture = engine->Get<rj::ResourceSystem>()->Get<rj::Texture>("rosalina.png", engine->Get<rj::Renderer>());
+		component->fps = 24;
+		component->numFramesX = 12;
+		component->numFramesY = 8;
 	}
-	{
-		std::unique_ptr<rj::PhysicsComponent> component = std::make_unique<rj::PhysicsComponent>();
+	/*{
+		rj::PhysicsComponent* component = actor->AddComponent<rj::PhysicsComponent>();
 		component->ApplyForce(rj::Vector2::right * 200);
-		actor->AddComponent(std::move(component));
-	}
+	}*/
 	scene->AddActor(std::move(actor));
 }
 

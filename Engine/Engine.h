@@ -31,7 +31,7 @@
 #include "Math/Vector2.h"
 
 // Components
-#include "Math/Component/SpriteComponent.h"
+#include "Math/Component/SpriteAnimationComponent.h"
 #include "Math/Component/PhysicsComponent.h"
 
 // Object
