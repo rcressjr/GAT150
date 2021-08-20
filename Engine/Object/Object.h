@@ -2,6 +2,7 @@
 
 namespace rj {
 	class Object {
-		//
+	public:
+		virtual ~Object() {}
 	};
 }

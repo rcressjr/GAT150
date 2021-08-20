@@ -3,12 +3,15 @@
 
 namespace rj {
 	void SpriteAnimationComponent::Update() {
+
+		owner->transform.position.x = rj::Wrap(owner->transform.position.x, 0.0f, 800.0f);
+		owner->transform.position.y = rj::Wrap(owner->transform.position.y, 0.0f, 800.0f);
+
 		frameTime = 1 / fps;
 
 		frameTimer += owner->scene->engine->time.deltaTime;
 		
-		if (frameTimer >= frameTime)
-		{
+		if (frameTimer >= frameTime) {
 			frameTimer = 0;
 			frame++;
 

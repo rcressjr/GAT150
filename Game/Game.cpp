@@ -18,16 +18,18 @@ void Game::Initialize() {
 	}*/
 	std::unique_ptr<rj::Actor> actor = std::make_unique <rj::Actor>(rj::Transform{ rj::Vector2{400, 300}, 0, 7 });
 	{
-		rj::SpriteAnimationComponent* component = actor->AddComponent<rj::SpriteAnimationComponent>();
-		component->texture = engine->Get<rj::ResourceSystem>()->Get<rj::Texture>("rosalina.png", engine->Get<rj::Renderer>());
+		auto component = rj::ObjectFactory::Instance().Create<rj::SpriteAnimationComponent>("SpriteAnimationComponent");
+		component->texture = engine->Get<rj::ResourceSystem>()->Get<rj::Texture>("rosalinawalkright.png", engine->Get<rj::Renderer>());
 		component->fps = 24;
 		component->numFramesX = 12;
-		component->numFramesY = 8;
+		component->numFramesY = 2;
+		actor->AddComponent(std::move(component));
 	}
-	/*{
-		rj::PhysicsComponent* component = actor->AddComponent<rj::PhysicsComponent>();
-		component->ApplyForce(rj::Vector2::right * 200);
-	}*/
+	{
+		auto component = rj::ObjectFactory::Instance().Create<rj::PhysicsComponent>("PhysicsComponent");
+		component->ApplyForce(rj::Vector2::right * 10);
+		actor->AddComponent(std::move(component));
+	}
 	scene->AddActor(std::move(actor));
 }
 
