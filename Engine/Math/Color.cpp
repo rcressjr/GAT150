@@ -30,4 +30,9 @@ namespace rj {
 
         return stream;
     }
+
+    std::ostream& operator<<(std::ostream& stream, Color& color) {
+        stream << color.r << " " << color.g << " " << color.b;
+        return stream;
+    }
 }

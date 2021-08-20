@@ -1,47 +1,42 @@
 #include "Game.h"
 #include <fstream>
 
-class Base {
-public:
-	virtual void Read(std::istream& stream) = 0;
-	virtual void Write(std::ostream& stream) = 0;
-};
-
-class A : public Base {
-public:
-	virtual void Read(std::istream& stream) override {
-		stream >> health;
-		stream >> speed;
-	}
-
-	virtual void Write(std::ostream& stream) override {
-		stream << health << std::endl;
-		stream << speed << std::endl;
-	}
-
-private:
-	int health;
-	float speed;
-};
 
 int main(int, char**) {
 	Game game;
 	game.Initialize();
 
-	A a;
-
-	//a.Read(std::cin);
-
-	std::fstream stream("config.txt", std::ios::in | std::ios::out);
-
-	if (stream.is_open()) {
-		a.Read(stream);
-		//a.Write(stream);
-
-		stream.close();
-	}
-
-		a.Write(std::cout);
+	rapidjson::Document document;
+	bool success = rj::json::Load("json.txt", document);
+	assert(success);
+		
+	std::string str;
+	rj::json::Get(document, "string", str);
+	std::cout << str << std::endl;
+	
+	bool b; 
+	rj::json::Get(document, "boolean", b);
+	std::cout << b << std::endl;
+	
+	int i1;
+	rj::json::Get(document, "integer1", i1);
+	std::cout << i1 << std::endl;
+	
+	int i2;
+	rj::json::Get(document, "integer2", i2);
+	std::cout << i2 << std::endl;
+	
+	float f;
+	rj::json::Get(document, "float", f);
+	std::cout << f << std::endl;
+	
+	rj::Vector2 v2;
+	rj::json::Get(document, "vector2", v2);
+	std::cout << v2 << std::endl;
+	
+	rj::Color color;
+	rj::json::Get(document, "color", color);
+	std::cout << color << std::endl;
 
 	bool quit = false;
 	SDL_Event event;

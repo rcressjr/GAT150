@@ -15,9 +15,15 @@ namespace rj {
 			b = ((rgb >> 16) & 0xFF) / 255.0f;	// 0 - 255 -> 0 - 1
 		}
 
+		float operator [] (size_t index) const { return (&r)[index]; }
+		float& operator [] (size_t index) { return (&r)[index]; }
+
+		void Set(float r, float g, float b) { this->r = r; this->g = g; this->b = b; }
+
 		Color operator + (const Color& color) { return { r + color.r, g + color.g, b + color.b }; }
 		Color operator - (const Color& color) { return { r - color.r, g - color.g, b - color.b }; }
 		Color operator * (float s) const { return { r * s, g * s, b * s }; }
+
 		operator uint32_t() const { return ToRGB(); }
 		operator SDL_Color() const {
 			SDL_Color color;
@@ -48,5 +54,6 @@ namespace rj {
 		static const Color yellow;
 
 		friend std::istream& operator >> (std::istream& stream, Color& color);
+		friend std::ostream& operator << (std::ostream& stream, Color& color);
 	};
 }

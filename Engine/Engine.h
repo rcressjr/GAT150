@@ -8,6 +8,7 @@
 
 // Core
 #include "Core/FileSystem.h"
+#include "Core/Json.h"
 #include "Core/Timer.h"
 #include "Core/Utilities.h"
 
