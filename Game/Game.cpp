@@ -11,12 +11,19 @@ void Game::Initialize() {
 	rj::SeedRandom(static_cast<unsigned int>(time(nullptr)));
 	rj::SetFilePath("../Resources");
 
+	rapidjson::Document document;
+	bool success = rj::json::Load("scene.txt", document);
+	assert(success);
+
+	scene->Read(document);
+
 	//std::unique_ptr<rj::Actor> actor = std::make_unique<rj::Actor>(rj::Transform( rj::Vector2{ 400, 300 }, 0, 1 ));
 	/*{
 		rj::SpriteComponent* component = actor->AddComponent<rj::SpriteComponent>();
 		component->texture = engine->Get<rj::ResourceSystem>()->Get<rj::Texture>("luma.png", engine->Get<rj::Renderer>());
 	}*/
-	std::unique_ptr<rj::Actor> actor = std::make_unique <rj::Actor>(rj::Transform{ rj::Vector2{400, 300}, 0, 7 });
+
+	/*std::unique_ptr<rj::Actor> actor = std::make_unique <rj::Actor>(rj::Transform{ rj::Vector2{400, 300}, 0, 7 });
 	{
 		auto component = rj::ObjectFactory::Instance().Create<rj::SpriteAnimationComponent>("SpriteAnimationComponent");
 		component->texture = engine->Get<rj::ResourceSystem>()->Get<rj::Texture>("rosalinawalkright.png", engine->Get<rj::Renderer>());
@@ -30,7 +37,7 @@ void Game::Initialize() {
 		component->ApplyForce(rj::Vector2::right * 10);
 		actor->AddComponent(std::move(component));
 	}
-	scene->AddActor(std::move(actor));
+	scene->AddActor(std::move(actor));*/
 }
 
 void Game::Shutdown() {

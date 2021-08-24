@@ -1,0 +1,26 @@
+{
+	"actors":[
+		{
+			"type":"Actor",
+			"tag":"Player",
+			"transform":{
+				"position":[400,300],
+				"rotation":0,
+				"scale":[5,5]
+			},
+			"components":[
+				{
+					"type":"SpriteAnimationComponent",
+					"textureName":"rosalinawalkright.png",
+					"fps":24,
+					"numFramesX":12,
+					"numFramesY":2
+				},
+				{
+					"type":"PhysicsComponent",
+					"force":10
+				}
+			]
+		}
+	]
+}

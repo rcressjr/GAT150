@@ -2,6 +2,7 @@
 #include "Object.h"
 #include "Math/Transform.h"
 #include "Math/Component/Component.h"
+#include "Core/Serializable.h"
 #include <vector>
 #include <memory>
 
@@ -10,7 +11,7 @@ namespace rj {
 	class Texture;
 	class Renderer;
 
-	class Actor : public Object {
+	class Actor : public Object, public ISerializable {
 	public:
 		Actor() {}
 		Actor(const Transform& transform) : transform{ transform } {}
@@ -24,6 +25,9 @@ namespace rj {
 		void AddChild(std::unique_ptr<Actor> actor);
 
 		float GetRadius();
+		
+		virtual bool Write(const rapidjson::Value& value) const override;
+		virtual bool Read(const rapidjson::Value& value) override;
 
 		void AddComponent(std::unique_ptr<Component> component);
 		template<class T>
@@ -39,6 +43,7 @@ namespace rj {
 		Actor* parent{ nullptr };
 		std::vector<std::unique_ptr<Actor>> children;
 		std::vector<std::unique_ptr<Component>> components;
+
 	};
 
 	template<class T>

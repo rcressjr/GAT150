@@ -31,4 +31,17 @@ namespace rj {
 	void SpriteAnimationComponent::Draw(Renderer* renderer) {
 		renderer->Draw(texture, rect, owner->transform);
 	}
+
+	bool SpriteAnimationComponent::Write(const rapidjson::Value& value) const {
+		return false;
+	}
+
+	bool SpriteAnimationComponent::Read(const rapidjson::Value& value) {
+		SpriteComponent::Read(value);
+		JSON_READ(value, fps);
+		JSON_READ(value, numFramesX);
+		JSON_READ(value, numFramesY);
+
+		return true;
+	}
 }

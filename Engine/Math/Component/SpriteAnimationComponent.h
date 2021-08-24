@@ -1,5 +1,5 @@
 #pragma once
-#include "Math/Component/SpriteComponent.h"
+#include "SpriteComponent.h"
 #include <SDL.h>
 
 namespace rj {
@@ -9,6 +9,8 @@ namespace rj {
 		void Update() override;
 		void Draw(Renderer* renderer) override;
 
+		virtual bool Write(const rapidjson::Value& value) const override;
+		virtual bool Read(const rapidjson::Value& value) override;
 	public:
 		int frame = 0;
 		int fps = 0;

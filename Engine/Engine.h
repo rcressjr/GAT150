@@ -1,6 +1,6 @@
 #pragma once
 
-#define REGISTER_CLASS(CLASS) ObjectFactory::Instance().Register<CLASS>(#CLASS);
+#define REGISTER_CLASS(class) ObjectFactory::Instance().Register<class>(#class);
 
 // Audio
 #include "Audio/AudioChannel.h"
@@ -9,6 +9,7 @@
 // Core
 #include "Core/FileSystem.h"
 #include "Core/Json.h"
+#include "Core/Serializable.h"
 #include "Core/Timer.h"
 #include "Core/Utilities.h"
 

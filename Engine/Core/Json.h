@@ -4,6 +4,8 @@
 #include "Math/Color.h"
 #include <string>
 
+#define JSON_READ(value, data) rj::json::Get(value, #data, data);
+
 namespace rj {
 	namespace json {
 		bool Load(const std::string& filename, rapidjson::Document& document);

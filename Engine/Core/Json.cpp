@@ -25,7 +25,7 @@ namespace rj {
 		}
 
 		bool Get(const rapidjson::Value& value, const std::string& name, float& data) {
-			if (value.HasMember(name.c_str()) == false || value[name.c_str()].IsInt() == false) { return false; }
+			if (value.HasMember(name.c_str()) == false || value[name.c_str()].IsNumber() == false) { return false; }
 
 			data = value[name.c_str()].GetFloat();
 
@@ -33,7 +33,7 @@ namespace rj {
 		}
 
 		bool Get(const rapidjson::Value& value, const std::string& name, bool& data) {
-			if (value.HasMember(name.c_str()) == false || value[name.c_str()].IsInt() == false) { return false; }
+			if (value.HasMember(name.c_str()) == false || value[name.c_str()].IsBool() == false) { return false; }
 
 			data = value[name.c_str()].GetBool();
 
@@ -41,7 +41,7 @@ namespace rj {
 		}
 
 		bool Get(const rapidjson::Value& value, const std::string& name, std::string& data) {
-			if (value.HasMember(name.c_str()) == false || value[name.c_str()].IsInt() == false) { return false; }
+			if (value.HasMember(name.c_str()) == false || value[name.c_str()].IsString() == false) { return false; }
 
 			data = value[name.c_str()].GetString();
 
