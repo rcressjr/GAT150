@@ -23,7 +23,6 @@ public:
 	bool IsQuit() { return quit; }
 
 private:
-	void UpdateTitle(float dt);
 	void UpdateLevelStart(float dt);
 	void OnAddPoints(const rj::Event& event);
 	void OnPlayerDead(const rj::Event& event);

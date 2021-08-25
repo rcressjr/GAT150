@@ -160,10 +160,6 @@ void Game::Draw() {
 	engine->Get<rj::Renderer>()->EndFrame();
 }
 
-void Game::UpdateTitle(float dt) {
-	
-}
-
 void Game::UpdateLevelStart(float dt) {
 	engine->Get<rj::Renderer>()->BeginFrame();
 	if (scene->GetActors<Player>().size() == 0) {
