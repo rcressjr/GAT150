@@ -1,6 +1,6 @@
 #pragma once
 
-#define REGISTER_CLASS(class) ObjectFactory::Instance().Register<class>(#class);
+#define REGISTER_CLASS(class) rj::ObjectFactory::Instance().Register<class>(#class);
 
 // Audio
 #include "Audio/AudioChannel.h"
@@ -37,14 +37,17 @@
 #include "Math/Transform.h"
 #include "Math/Vector2.h"
 
-// Components
+// Math/Components
 #include "Math/Component/SpriteAnimationComponent.h"
-#include "Math/Component/PhysicsComponent.h"
+#include "Math/Component/RBPhysicsComponent.h"
 
 // Object
 #include "Object/Actor.h"
 #include "Object/Object.h"
 #include "Object/Scene.h"
+
+//physics system
+#include "Physics/PhysicsSystem.h"
 
 // Resource
 #include "Resource/Resource.h"

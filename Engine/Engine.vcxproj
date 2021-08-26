@@ -186,6 +186,7 @@
     <ClCompile Include="Input\InputSystem.cpp" />
     <ClCompile Include="Math\Color.cpp" />
     <ClCompile Include="Math\Component\PhysicsComponent.cpp" />
+    <ClCompile Include="Math\Component\RBPhysicsComponent.cpp" />
     <ClCompile Include="Math\Component\SpriteAnimationComponent.cpp" />
     <ClCompile Include="Math\Component\SpriteComponent.cpp" />
     <ClCompile Include="Math\random.cpp" />
@@ -193,6 +194,7 @@
     <ClCompile Include="Math\Vector2.cpp" />
     <ClCompile Include="Object\Actor.cpp" />
     <ClCompile Include="Object\Scene.cpp" />
+    <ClCompile Include="Physics\PhysicsSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Audio\AudioChannel.h" />
@@ -216,6 +218,7 @@
     <ClInclude Include="Math\Component\Component.h" />
     <ClInclude Include="Math\Component\GraphicsComponent.h" />
     <ClInclude Include="Math\Component\PhysicsComponent.h" />
+    <ClInclude Include="Math\Component\RBPhysicsComponent.h" />
     <ClInclude Include="Math\Component\SpriteAnimationComponent.h" />
     <ClInclude Include="Math\Component\SpriteComponent.h" />
     <ClInclude Include="Math\MathUtils.h" />
@@ -227,6 +230,7 @@
     <ClInclude Include="Object\Actor.h" />
     <ClInclude Include="Object\Object.h" />
     <ClInclude Include="Object\Scene.h" />
+    <ClInclude Include="Physics\PhysicsSystem.h" />
     <ClInclude Include="Resource\Resource.h" />
     <ClInclude Include="Resource\ResourceSystem.h" />
   </ItemGroup>

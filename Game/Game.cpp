@@ -1,9 +1,14 @@
 #include "Game.h"
+#include "GameComponent/PlayerComponent.h"
+#include "GameComponent/EnemyComponent.h"
 
 void Game::Initialize() {
 	engine = std::make_unique<rj::Engine>();
 	engine->Startup();
 	engine->Get<rj::Renderer>()->Create("GAT150", 800, 600);
+
+	REGISTER_CLASS(PlayerComponent)
+	REGISTER_CLASS(EnemyComponent)
 
 	scene = std::make_unique<rj::Scene>();
 	scene->engine = engine.get();

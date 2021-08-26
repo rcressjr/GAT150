@@ -19,6 +19,8 @@ namespace rj {
 		void RemoveActor(Actor* actor);
 		void RemoveAllActors();
 
+		Actor* FindActor(const std::string& name);
+
 		virtual bool Write(const rapidjson::Value& value) const override;
 		virtual bool Read(const rapidjson::Value& value) override;
 
