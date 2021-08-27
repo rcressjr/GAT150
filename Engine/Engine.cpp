@@ -17,6 +17,8 @@ namespace rj {
 		REGISTER_CLASS(PhysicsComponent)
 		REGISTER_CLASS(RBPhysicsComponent)
 		REGISTER_CLASS(SpriteAnimationComponent)
+		REGISTER_CLASS(AudioComponent)
+		REGISTER_CLASS(TextComponent)
 	}
 
 	void Engine::Shutdown() {

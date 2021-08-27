@@ -17,8 +17,24 @@ namespace rj {
 		std::for_each(children.begin(), children.end(), [renderer](auto& child) { child->Draw(renderer); });
 	}
 
-	float Actor::GetRadius() {
-		return 0;
+	void Actor::BeginContact(Actor* other) {
+		Event event;
+
+		event.name = "collision_enter";
+		event.data = other;
+		event.receiver = this;
+
+		scene->engine->Get<EventSystem>()->Notify(event);
+	}
+
+	void Actor::EndContact(Actor* other) {
+		Event event;
+
+		event.name = "collision_exit";
+		event.data = other;
+		event.receiver = this;
+
+		scene->engine->Get<EventSystem>()->Notify(event);
 	}
 
 	void Actor::AddComponent(std::unique_ptr<Component> component) {
@@ -47,6 +63,7 @@ namespace rj {
 				if (component) {
 					component->owner = this;
 					component->Read(componentValue);
+					component->Create();
 					AddComponent(std::move(component));
 				}
 			}

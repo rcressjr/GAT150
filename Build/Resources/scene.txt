@@ -27,12 +27,28 @@
                "numFramesX":18,
                "numFramesY":11,
                "startFrame":96,
-               "endFrame":101
-            },
-            {
-               "type":"PhysicsComponent",
-               "force":10,
-               "damping":0.98
+               "endFrame":101,
+               "sequences":[
+                    {
+                        "name":"idle",
+                        "sequence.fps":1,
+                        "sequence.startFrame":6,
+                        "sequence.endFrame":7
+                    },
+                    {
+                        "name":"walk_right",
+                        "sequence.fps":24,
+                        "sequence.startFrame":96,
+                        "sequence.endFrame":101
+                    },
+                    {
+                        "name":"walk_left",
+                        "sequence.fps":24,
+                        "sequence.startFrame":168,
+                        "sequence.endFrame":173
+                    }
+               ],
+               "defaultSequence":"idle"
             },
             {
                "type":"RBPhysicsComponent",
@@ -41,10 +57,7 @@
                "data.lockAngle":true,
                "data.resititution":1,
                "data.gravityScale":1,
-               "data.size":[
-                  64,
-                  96
-               ]
+               "data.size":[ 64, 96 ]
             }
          ]
       },
@@ -57,15 +70,15 @@
                200
             ],
             "scale":[
-               4,
-               4
+               2,
+               2
             ],
             "rotation":0
          },
          "components":[
             {
                "type":"EnemyComponent",
-               "speed":1
+               "speed":10
             },
             {
                "type":"SpriteAnimationComponent",
@@ -73,13 +86,8 @@
                "fps":2,
                "numFramesX":4,
                "numFramesY":1,
-               "startFrame":2,
-               "endFrame":4
-            },
-            {
-               "type":"PhysicsComponent",
-               "force":10,
-               "damping":0.98
+               "startFrame":1,
+               "endFrame":3
             },
             {
                "type":"RBPhysicsComponent",
@@ -121,6 +129,124 @@
                ]
             }
          ]
-      }
+      },
+      {
+         "type":"Actor",
+         "tag":"Ground",
+         "transform":{
+            "position":[
+               0,
+               300
+            ],
+            "rotation":0,
+            "scale":[
+               1,
+               1
+            ]
+         },
+         "components":[
+            {
+               "type":"SpriteComponent",
+               "textureName":""
+            },
+            {
+               "type":"RBPhysicsComponent",
+               "data.isDynamic":false,
+               "data.density":1,
+               "data.size":[
+                  10,
+                  600
+               ]
+            }
+         ]
+      },
+      {
+         "type":"Actor",
+         "tag":"Ground",
+         "transform":{
+            "position":[
+               800,
+               300
+            ],
+            "rotation":0,
+            "scale":[
+               1,
+               1
+            ]
+         },
+         "components":[
+            {
+               "type":"SpriteComponent",
+               "textureName":""
+            },
+            {
+               "type":"RBPhysicsComponent",
+               "data.isDynamic":false,
+               "data.density":1,
+               "data.size":[
+                  10,
+                  600
+               ]
+            }
+         ]
+      },
+      {
+         "type":"Actor",
+         "tag":"Ground",
+         "transform":{
+            "position":[
+               400,
+               0
+            ],
+            "rotation":0,
+            "scale":[
+               1,
+               1
+            ]
+         },
+         "components":[
+            {
+               "type":"SpriteComponent",
+               "textureName":"ground.png"
+            },
+            {
+               "type":"RBPhysicsComponent",
+               "data.isDynamic":false,
+               "data.density":1,
+               "data.size":[
+                  800,
+                  20
+               ]
+            }
+         ]
+      },
+      {
+	    "type":"AudioComponent",
+	    "soundName":"audio/grunt.wav",
+	    "playOnAwake":true
+      },
+      {
+			"type":"Actor",
+			"name":"Score",
+			"transform":{
+				"position":[
+					60,
+					20
+				]
+			},
+			"components":[
+				{
+					"type":"TextComponent",
+					"fontName":"fonts/ace records.ttf",
+					"fontSize":16,
+					"color":[
+						0.65,
+						0,
+						1
+					],
+					"text":"Hello World"
+				}
+			]
+		}
    ]
 }

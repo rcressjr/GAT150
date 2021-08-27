@@ -9,19 +9,6 @@ namespace rj {
 
 		std::for_each(actors.begin(), actors.end(), [dt](auto& actor) { actor->Update(dt); });
 
-		for (size_t i = 0; i < actors.size(); i++) {
-			for (size_t j = 0; j < actors.size(); j++) {
-				if (actors[i]->destroy || actors[j]->destroy) continue;
-				rj::Vector2 dir = actors[i]->transform.position - actors[j]->transform.position;
-				float distance = dir.length();
-
-				if (distance < actors[i]->GetRadius() + actors[j]->GetRadius()) {
-					actors[i]->OnCollision(actors[j].get());
-					actors[j]->OnCollision(actors[i].get());
-				}
-			}
-		}
-
 		auto iter = actors.begin();
 		while (iter != actors.end()) {
 			if ((*iter)->destroy) {

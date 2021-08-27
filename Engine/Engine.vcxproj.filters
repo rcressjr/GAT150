@@ -113,6 +113,15 @@
     <ClCompile Include="Physics\PhysicsSystem.cpp">
       <Filter>Source\Physics</Filter>
     </ClCompile>
+    <ClCompile Include="Physics\ContactListener.cpp">
+      <Filter>Source\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\Component\AudioComponent.cpp">
+      <Filter>Source\Math\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\Component\TextComponent.cpp">
+      <Filter>Source\Math\Component</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Framework\EventSystem.h">
@@ -222,6 +231,15 @@
     </ClInclude>
     <ClInclude Include="Physics\PhysicsSystem.h">
       <Filter>Source\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics\ContactListener.h">
+      <Filter>Source\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Component\AudioComponent.h">
+      <Filter>Source\Math\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Component\TextComponent.h">
+      <Filter>Source\Math\Component</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

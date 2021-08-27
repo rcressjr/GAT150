@@ -18,10 +18,7 @@ namespace rj {
 	}
 
 	bool PhysicsComponent::Read(const rapidjson::Value& value) {
-		JSON_READ(value, force);
 		JSON_READ(value, damping);
-
-		ApplyForce(rj::Vector2::right * force);
 
 		return true;
 	}

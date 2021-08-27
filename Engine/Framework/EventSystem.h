@@ -7,9 +7,12 @@
 #include <variant>
 
 namespace rj {
+	class Object;
+
 	struct Event {
 		std::string name;
-		std::variant<int, bool, float, std::string> data;
+		Object* receiver{ nullptr };
+		std::variant<int, bool, float, std::string, void*> data;
 	};
 
 	class EventSystem : public System {
@@ -18,13 +21,14 @@ namespace rj {
 
 		struct Observer {
 			function_t function;
+			Object* reciever;
 		};
 
 		virtual void Startup() override;
 		virtual void Shutdown() override;
 		virtual void Update(float dt) override;
 
-		void Subscribe(const std::string& name, function_t function);
+		void Subscribe(const std::string& name, function_t function, Object* receiver = nullptr);
 		void Notify(const Event& event);
 
 	private:

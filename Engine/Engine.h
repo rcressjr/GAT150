@@ -40,6 +40,8 @@
 // Math/Components
 #include "Math/Component/SpriteAnimationComponent.h"
 #include "Math/Component/RBPhysicsComponent.h"
+#include "Math/Component/AudioComponent.h"
+#include "Math/Component/TextComponent.h"
 
 // Object
 #include "Object/Actor.h"
