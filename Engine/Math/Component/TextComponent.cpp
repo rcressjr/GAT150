@@ -34,3 +34,28 @@ namespace rj {
 		return true;
 	}
 }
+
+
+//{
+//	"type":"Actor",
+//		"name" : "Score",
+//		"transform" : {
+//		"position": [
+//			60,
+//				20
+//		]
+//	},
+//		"components": [
+//			{
+//				"type":"TextComponent",
+//					"fontName" : "fonts/ace records.ttf",
+//					"fontSize" : 16,
+//					"color" : [
+//						0.65,
+//							0,
+//							1
+//					] ,
+//					"text" : "Hello World"
+//			}
+//		]
+//},

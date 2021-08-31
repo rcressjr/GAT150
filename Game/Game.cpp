@@ -24,9 +24,19 @@ void Game::Initialize() {
 
 	scene->Read(document);
 
-	auto actor = rj::ObjectFactory::Instance().Create<rj::Actor>("coin");
-	actor->transform.position = rj::Vector2{ rj::RandomRange(0, 800), rj::RandomRange(100, 300) };
-	scene->AddActor(std::move(actor));
+	rj::Tilemap tilemap;
+	tilemap.scene = scene.get();
+	success = rj::json::Load("map.txt", document);
+	assert(success);
+
+	tilemap.Read(document);
+	tilemap.Create();
+
+	for (int i = 0; i < 40; i++) {
+		auto actor = rj::ObjectFactory::Instance().Create<rj::Actor>("coin");
+		actor->transform.position = rj::Vector2{ rj::RandomRange(0, 800), rj::RandomRange(300, 500) };
+		scene->AddActor(std::move(actor));
+	}
 }
 
 void Game::Shutdown() {

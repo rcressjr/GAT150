@@ -15,6 +15,8 @@ namespace rj {
 		virtual bool Write(const rapidjson::Value& value) const override;
 		virtual bool Read(const rapidjson::Value& value) override;
 	public:
+		SDL_Rect rect;
+
 		std::shared_ptr<rj::Texture> texture;
 	};
 }

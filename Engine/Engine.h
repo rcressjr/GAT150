@@ -47,6 +47,7 @@
 #include "Object/Actor.h"
 #include "Object/Object.h"
 #include "Object/Scene.h"
+#include "Object/Tilemap.h"
 
 //physics system
 #include "Physics/PhysicsSystem.h"

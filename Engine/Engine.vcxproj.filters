@@ -122,6 +122,9 @@
     <ClCompile Include="Math\Component\TextComponent.cpp">
       <Filter>Source\Math\Component</Filter>
     </ClCompile>
+    <ClCompile Include="Object\Tilemap.cpp">
+      <Filter>Source\Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Framework\EventSystem.h">
@@ -241,9 +244,15 @@
     <ClInclude Include="Math\Component\TextComponent.h">
       <Filter>Source\Math\Component</Filter>
     </ClInclude>
+    <ClInclude Include="Object\Tilemap.h">
+      <Filter>Source\Object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\Build\Resources\scene.txt">
+      <Filter>Resources</Filter>
+    </Text>
+    <Text Include="..\Build\Resources\map.txt">
       <Filter>Resources</Filter>
     </Text>
   </ItemGroup>
