@@ -2,6 +2,10 @@
 #include "Engine.h"
 
 namespace rj {
+	RBPhysicsComponent::~RBPhysicsComponent() {
+		owner->scene->engine->Get<PhysicsSystem>()->DestroyBody(body);
+	}
+
 	void RBPhysicsComponent::Update() {
 		if (!body) {
 			body = owner->scene->engine->Get<PhysicsSystem>()->CreateBody(owner->transform.position, owner->transform.rotation, data, owner);

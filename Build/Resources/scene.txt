@@ -247,6 +247,41 @@
 					"text":"Hello World"
 				}
 			]
-		}
+		},
+        {
+            "type":"Actor",
+            "prototype":true,
+            "name":"coin",
+            "tag":"Pickup",
+            "transform":{
+                "position":[
+                    200,
+                    300
+                ]
+            },
+            "components":[
+                {
+                    "type":"SpriteAnimationComponent",
+                    "textureName":"coin.png",
+                    "fps":2,
+                    "numFramesX":8,
+                    "numFramesY":1
+                 },
+                 {
+                    "type":"RBPhysicsComponent",
+                    "data.isDynamic":false,
+                    "data.isSensor":true,
+                    "data.density":1,
+                    "data.size":[
+                        10,
+                        10
+                    ]
+                },
+                {
+                    "type":"PickupComponent",
+                    "coins":1
+                }
+            ]
+        }
    ]
 }

@@ -1,6 +1,7 @@
 #include "Game.h"
 #include "GameComponent/PlayerComponent.h"
 #include "GameComponent/EnemyComponent.h"
+#include "GameComponent/PickupComponent.h"
 
 void Game::Initialize() {
 	engine = std::make_unique<rj::Engine>();
@@ -9,6 +10,7 @@ void Game::Initialize() {
 
 	REGISTER_CLASS(PlayerComponent)
 	REGISTER_CLASS(EnemyComponent)
+	REGISTER_CLASS(PickupComponent)
 
 	scene = std::make_unique<rj::Scene>();
 	scene->engine = engine.get();
@@ -22,27 +24,9 @@ void Game::Initialize() {
 
 	scene->Read(document);
 
-	//std::unique_ptr<rj::Actor> actor = std::make_unique<rj::Actor>(rj::Transform( rj::Vector2{ 400, 300 }, 0, 1 ));
-	/*{
-		rj::SpriteComponent* component = actor->AddComponent<rj::SpriteComponent>();
-		component->texture = engine->Get<rj::ResourceSystem>()->Get<rj::Texture>("luma.png", engine->Get<rj::Renderer>());
-	}*/
-
-	/*std::unique_ptr<rj::Actor> actor = std::make_unique <rj::Actor>(rj::Transform{ rj::Vector2{400, 300}, 0, 7 });
-	{
-		auto component = rj::ObjectFactory::Instance().Create<rj::SpriteAnimationComponent>("SpriteAnimationComponent");
-		component->texture = engine->Get<rj::ResourceSystem>()->Get<rj::Texture>("rosalinawalkright.png", engine->Get<rj::Renderer>());
-		component->fps = 24;
-		component->numFramesX = 12;
-		component->numFramesY = 2;
-		actor->AddComponent(std::move(component));
-	}
-	{
-		auto component = rj::ObjectFactory::Instance().Create<rj::PhysicsComponent>("PhysicsComponent");
-		component->ApplyForce(rj::Vector2::right * 10);
-		actor->AddComponent(std::move(component));
-	}
-	scene->AddActor(std::move(actor));*/
+	auto actor = rj::ObjectFactory::Instance().Create<rj::Actor>("coin");
+	actor->transform.position = rj::Vector2{ rj::RandomRange(0, 800), rj::RandomRange(100, 300) };
+	scene->AddActor(std::move(actor));
 }
 
 void Game::Shutdown() {

@@ -14,7 +14,10 @@ namespace rj {
 	class Actor : public Object, public ISerializable {
 	public:
 		Actor() {}
+		Actor(const Actor& other);
 		Actor(const Transform& transform) : transform{ transform } {}
+
+		std::unique_ptr<Object> Clone() const override { return std::make_unique<Actor>(*this); }
 
 		virtual void Initialize() {}
 
