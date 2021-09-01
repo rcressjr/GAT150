@@ -27,35 +27,10 @@ namespace rj {
 		JSON_READ(value, text);
 		
 		font = owner->scene->engine->Get<ResourceSystem>()->Get<Font>(fontName, &fontSize);
-		texture = owner->scene->engine->Get<ResourceSystem>()->Get<Texture>("texture", owner->scene->engine->Get<Renderer>());
+		texture = owner->scene->engine->Get<ResourceSystem>()->Get<Texture>(unique_string("texture"), owner->scene->engine->Get<Renderer>());
 
 		SetText(text);
 
 		return true;
 	}
 }
-
-
-//{
-//	"type":"Actor",
-//		"name" : "Score",
-//		"transform" : {
-//		"position": [
-//			60,
-//				20
-//		]
-//	},
-//		"components": [
-//			{
-//				"type":"TextComponent",
-//					"fontName" : "fonts/ace records.ttf",
-//					"fontSize" : 16,
-//					"color" : [
-//						0.65,
-//							0,
-//							1
-//					] ,
-//					"text" : "Hello World"
-//			}
-//		]
-//},

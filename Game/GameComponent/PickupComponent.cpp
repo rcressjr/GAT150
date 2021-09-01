@@ -24,20 +24,21 @@ void PickupComponent::OnCollisionEnter(const rj::Event& event) {
 	void* p = std::get<void*>(event.data);
 	Actor* actor = reinterpret_cast<Actor*>(p);
 
-	if (istring_compare(actor->tag, "player")) owner->scene->engine->Get<AudioSystem>()->PlayAudio("gotcoin");
+	if (istring_compare(actor->tag, "player")) {
+		owner->scene->engine->Get<AudioSystem>()->PlayAudio("gotcoin");
+		owner->destroy = true;
+
+		Event event;
+		event.name = "add_score";
+		event.data = 10;
+
+		owner->scene->engine->Get<EventSystem>()->Notify(event);
+	}
 	else return;
 }
 
 void PickupComponent::OnCollisionExit(const rj::Event& event) {
-	void* p = std::get<void*>(event.data);
-	Actor* actor = reinterpret_cast<Actor*>(p);
-
-	if (istring_compare(actor->tag, "player")) {
-		//owner->scene->RemoveActor(this->owner);
-		//this->~PickupComponent();
-		owner->destroy = true;
-	}
-	else return;
+	
 }
 
 bool PickupComponent::Write(const rapidjson::Value& value) const {

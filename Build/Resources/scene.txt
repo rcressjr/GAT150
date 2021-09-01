@@ -4,14 +4,15 @@
          "type":"Actor",
          "name":"Player",
          "tag":"Player",
+         "prototype":true,
          "transform":{
             "position":[
                400,
                300
             ],
             "scale":[
-               5,
-               5
+               2,
+               2
             ],
             "rotation":0
          },
@@ -58,8 +59,8 @@
                "data.resititution":1,
                "data.gravityScale":1,
                "data.size":[
-                  64,
-                  96
+                  32,
+                  64
                ]
             }
          ]
@@ -103,32 +104,6 @@
                "data.size":[
                   64,
                   96
-               ]
-            }
-         ]
-      },
-      {
-         "type":"Actor",
-         "tag":"ground",
-         "transform":{
-            "position":[
-               400,
-               550
-            ],
-            "rotation":0
-         },
-         "components":[
-            {
-               "type":"SpriteComponent",
-               "textureName":"ground.png"
-            },
-            {
-               "type":"RBPhysicsComponent",
-               "data.isDynamic":false,
-               "data.density":1,
-               "data.size":[
-                  800,
-                  20
                ]
             }
          ]
@@ -239,7 +214,7 @@
             {
                "type":"SpriteAnimationComponent",
                "textureName":"coin.png",
-               "fps":2,
+               "fps":10,
                "numFramesX":8,
                "numFramesY":1
             },
@@ -286,8 +261,8 @@
                "data.isDynamic":false,
                "data.density":1,
                "data.size":[
-                  64,
-                  64
+                  35,
+                  42
                ]
             }
          ]

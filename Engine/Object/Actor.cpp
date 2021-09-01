@@ -19,12 +19,16 @@ namespace rj {
 	}
 	
 	void Actor::Update(float dt) {
+		if (!active) return;
+
 		transform.Update();
 		std::for_each(children.begin(), children.end(), [](auto& child) { child->transform.Update(child->parent->transform.matrix); });
 		std::for_each(components.begin(), components.end(), [](auto& component) { component->Update(); });
 	}
 
 	void Actor::Draw(Renderer* renderer) {
+		if (!active) return;
+
 		std::for_each(components.begin(), components.end(), [renderer](auto& component) {  if (dynamic_cast<GraphicsComponent*>(component.get())) { dynamic_cast<GraphicsComponent*>(component.get())->Draw(renderer); }});
 
 		std::for_each(children.begin(), children.end(), [renderer](auto& child) { child->Draw(renderer); });
