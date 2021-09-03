@@ -250,7 +250,7 @@
                "type":"SpriteComponent",
                "textureName":"tilemaptwo.png",
                "rect":[
-                  416,
+                  0,
                   128,
                   32,
                   32
@@ -284,7 +284,7 @@
                "textureName":"tilemaptwo.png",
                "rect":[
                   32,
-                  448,
+                  128,
                   32,
                   32
                ]
@@ -293,6 +293,139 @@
                "type":"RBPhysicsComponent",
                "data.isDynamic":false,
                "data.density":1,
+               "data.size":[
+                  64,
+                  64
+               ]
+            }
+         ]
+      },
+      {
+         "type":"Actor",
+         "prototype": true,
+         "name":"tile03",
+         "tag":"ground",
+         "transform":{
+            "scale":[
+               2,
+               2
+            ]
+         },
+         "components":[
+            {
+               "type":"SpriteComponent",
+               "textureName":"tilemaptwo.png",
+               "rect":[
+                  64,
+                  128,
+                  32,
+                  32
+               ]
+            },
+            {
+               "type":"RBPhysicsComponent",
+               "data.isDynamic":false,
+               "data.density":1,
+               "data.size":[
+                  64,
+                  64
+               ]
+            }
+         ]
+      },
+      {
+         "type":"Actor",
+         "prototype": true,
+         "name":"tile04",
+         "tag":"ground",
+         "transform":{
+            "scale":[
+               2,
+               2
+            ]
+         },
+         "components":[
+            {
+               "type":"SpriteComponent",
+               "textureName":"tilemaptwo.png",
+               "rect":[
+                  96,
+                  128,
+                  32,
+                  32
+               ]
+            },
+            {
+               "type":"RBPhysicsComponent",
+               "data.isDynamic":false,
+               "data.density":1,
+               "data.size":[
+                  64,
+                  64
+               ]
+            }
+         ]
+      },
+      {
+         "type":"Actor",
+         "prototype": true,
+         "name":"tile05",
+         "tag":"ground",
+         "transform":{
+            "scale":[
+               2,
+               2
+            ]
+         },
+         "components":[
+            {
+               "type":"SpriteComponent",
+               "textureName":"tilemaptwo.png",
+               "rect":[
+                  96,
+                  160,
+                  32,
+                  32
+               ]
+            },
+            {
+               "type":"RBPhysicsComponent",
+               "data.isDynamic":false,
+               "data.density":1,
+               "data.size":[
+                  64,
+                  64
+               ]
+            }
+         ]
+      },
+      {
+         "type":"Actor",
+         "prototype": true,
+         "name":"tile06",
+         "tag":"ground",
+         "transform":{
+            "scale":[
+               2,
+               2
+            ]
+         },
+         "components":[
+            {
+               "type":"SpriteComponent",
+               "textureName":"tilemaptwo.png",
+               "rect":[
+                  448,
+                  192,
+                  32,
+                  32
+               ]
+            },
+            {
+               "type":"RBPhysicsComponent",
+               "data.isDynamic":false,
+               "data.density":1,
+               "data.restitution":1,
                "data.size":[
                   64,
                   64

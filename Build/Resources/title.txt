@@ -57,7 +57,7 @@
             {
                 "type":"TextComponent",
                 "fontName":"fonts/ENDOR.ttf",
-                "fontSize":48,
+                "fontSize":64,
                 "color":[
                     0,
                     0,

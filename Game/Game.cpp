@@ -143,11 +143,26 @@ void Game::Level() {
 }
 
 void Game::PlayerDead() {
+	rapidjson::Document document;
+	bool success = rj::json::Load("gameover.txt", document);
+	assert(success);
+	scene->Read(document);
 
+
+	state = eState::GameOver;
 }
 
 void Game::GameOver() {
+	if (engine->Get<rj::InputSystem>()->GetKeyState(SDL_SCANCODE_SPACE) == rj::InputSystem::eKeyState::Pressed) {
+		score = 0;
+		auto death = scene->FindActor("death");
+		death->active = false;
 
+		auto retry = scene->FindActor("retry");
+		retry->active = false;
+
+		state = eState::Reset;
+	}
 }
 
 void Game::OnAddScore(const rj::Event& event) {

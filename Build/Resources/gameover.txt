@@ -1,0 +1,50 @@
+{
+   "actors":[
+    {
+        "type":"Actor",
+        "name":"death",
+        "transform":{
+            "position":[
+                400,
+                200
+            ]
+        },
+        "components":[
+            {
+                "type":"TextComponent",
+                "fontName":"fonts/ENDOR.ttf",
+                "fontSize":16,
+                "color":[
+                    0,
+                    0,
+                    0
+                ],
+                "text":"You Have Died"
+            }
+        ]
+    },
+    {
+        "type":"Actor",
+        "name":"retry",
+        "transform":{
+            "position":[
+                400,
+                400
+            ]
+        },
+        "components":[
+            {
+                "type":"TextComponent",
+                "fontName":"fonts/Ace Records.ttf",
+                "fontSize":32,
+                "color":[
+                    0,
+                    0,
+                    0
+                ],
+                "text":"Press Space to Continue"
+            }
+        ]
+    }
+    ]
+}
