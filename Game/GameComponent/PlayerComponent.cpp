@@ -26,7 +26,7 @@ void PlayerComponent::Update() {
 	}
 
 	if (contacts.size() > 0 && owner->scene->engine->Get<InputSystem>()->GetKeyState(SDL_SCANCODE_SPACE) == InputSystem::eKeyState::Pressed) {
-		force.y -= 1500;
+		force.y -= 500;
 	}
 
 	PhysicsComponent* physicsComponent = owner->GetComponent<PhysicsComponent>();
@@ -46,7 +46,17 @@ void PlayerComponent::OnCollisionEnter(const Event& event) {
 	Actor* actor = reinterpret_cast<Actor*>(p);
 
 	if (istring_compare(actor->tag, "ground")) contacts.push_back(actor);
-	if (istring_compare(actor->tag, "enemy")) owner->scene->engine->Get<AudioSystem>()->PlayAudio("hurt");
+	if (istring_compare(actor->tag, "enemy")) {
+		owner->scene->engine->Get<AudioSystem>()->PlayAudio("hurt");
+
+		Event event;
+		event.name = "player_dead";
+		event.data = 0;
+
+		owner->scene->engine->Get<EventSystem>()->Notify(event);
+
+		owner->destroy = true;
+	}
 }
 
 void PlayerComponent::OnCollisionExit(const Event& event) {

@@ -6,7 +6,7 @@
 void Game::Initialize() {
 	engine = std::make_unique<rj::Engine>();
 	engine->Startup();
-	engine->Get<rj::Renderer>()->Create("GAT150", 800, 600);
+	engine->Get<rj::Renderer>()->Create("GAT150", 896, 704);
 
 	REGISTER_CLASS(PlayerComponent)
 	REGISTER_CLASS(EnemyComponent)
@@ -19,6 +19,7 @@ void Game::Initialize() {
 	rj::SetFilePath("../Resources");
 
 	engine->Get<rj::EventSystem>()->Subscribe("add_score", std::bind(&Game::OnAddScore, this, std::placeholders::_1));
+	engine->Get<rj::EventSystem>()->Subscribe("player_dead", std::bind(&Game::OnPlayerDead, this, std::placeholders::_1));
 }
 
 void Game::Shutdown() {
@@ -136,6 +137,8 @@ void Game::Level() {
 		coin->transform.position = rj::Vector2{ rj::RandomRange(100, 700), 150.0f };
 
 		scene->AddActor(std::move(coin));
+
+		spawnTimer = 2;
 	}
 }
 
@@ -149,4 +152,8 @@ void Game::GameOver() {
 
 void Game::OnAddScore(const rj::Event& event) {
 	score += std::get<int>(event.data);
+}
+
+void Game::OnPlayerDead(const rj::Event& event) {
+	state = eState::PlayerDead;
 }

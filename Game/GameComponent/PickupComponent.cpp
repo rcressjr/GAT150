@@ -1,5 +1,6 @@
 #include "PickupComponent.h"
 #include "Engine.h"
+#include "EnemyComponent.h"
 #include <memory>
 
 using namespace rj;

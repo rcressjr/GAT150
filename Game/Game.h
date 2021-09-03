@@ -32,6 +32,7 @@ private:
 	void GameOver();
 
 	void OnAddScore(const rj::Event& event);
+	void OnPlayerDead(const rj::Event& event);
 
 public:
 	std::unique_ptr<rj::Scene> scene;
@@ -42,6 +43,7 @@ private:
 
 	eState state = eState::Reset;
 	int score{ 0 };
+	int health{ 0 };
 	float stateTimer{ 0 };
 	float spawnTimer{ 0 };
 };

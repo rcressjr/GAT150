@@ -1,6 +1,7 @@
 #pragma once
 #include "Math/Component/Component.h"
 #include "Framework/EventSystem.h"
+#include "Game.h"
 
 class PlayerComponent : public rj::Component {
 public:

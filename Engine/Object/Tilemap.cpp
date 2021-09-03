@@ -10,7 +10,7 @@ namespace rj {
 			auto actor = ObjectFactory::Instance().Create<Actor>(tileNames[index]);
 			if (actor) {
 				int x = i % numTilesX;
-				int y = i / numTilesY;
+				int y = i / numTilesX;
 
 				actor->transform.position = start + (Vector2{ x, y } * size);
 				scene->AddActor(std::move(actor));
